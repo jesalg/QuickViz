@@ -85,7 +85,7 @@ function Doc(body, metadata, variables)
   add('<!DOCTYPE html>')
   add('<html>')
   add('<head>')
-  add('<link rel="stylesheet" href="ChartSS.css" />')
+  add('<link rel="stylesheet" href="https://rbitr.github.io/ChartS.css/ChartSS.css" />')
   -- a default good style
   add('<link rel="stylesheet" href="https://unpkg.com/mvp.css" />')
   add('</head>')

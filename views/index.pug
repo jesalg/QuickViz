@@ -1,7 +1,69 @@
 html
   head
-    title Chart
-    link(rel='stylesheet' href='https://rbitr.github.io/ChartS.css/ChartSS.css')
-    link(rel='stylesheet' href='https://unpkg.com/mvp.css')
+    title QuickViz
+    link(rel='stylesheet' href='https://unpkg.com/tailwindcss/dist/tailwind.min.css')
+    link(rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css')
+  body.bg-gray-400.font-sans
+    nav.bg-gray-800.mt-0.w-full
+      .container.mx-auto.flex.flex-wrap.items-center
+        .flex.w-full.justify-center.text-white.font-extrabold(class='md:w-1/2 md:justify-start')
+          a.text-white.no-underline(class='hover:text-white hover:no-underline' href='#')
+            span.text-2xl.pl-2
+              i.em.em-chart_with_upwards_trend
+              |  QuickViz
+        .flex.w-full.pt-2.content-center.justify-between(class='md:w-1/2 md:justify-end')
+          ul.list-reset.flex.justify-between.flex-1.items-center(class='md:flex-none')
+            li.mr-3
+              a.inline-block.py-2.px-4.text-white.no-underline(href='/') Home
+            li.mr-3
+              a.inline-block.text-gray-600.no-underline.py-2.px-4(class='hover:text-gray-200 hover:text-underline' href='/about') About
+            li.mr-3  
+    // Container
+    .bg-white.h-screen.container.mx-auto.flex.flex-wrap
+      .flex.w-full(class='md:w-1/2 md:justify-start')
+        form.w-full(id="myForm")
+          textarea.w-full.h-full.p-24(id="quickvizmd" name="quickvizmd")
+            | - Dogs: 39
+            | - Cats: 7
+            | - Lions: 36
+            | - Tigers: 55
+            | - Bears: 33
+            | - Walruses: 30
+      .flex.w-full(class='md:w-1/2 md:justify-start')
+        .container.mx-auto.pt-24.px-6(class='md:pt-16') 
+          iframe(id="vizPreview", frameborder="0", width="100%", height="100%")
+  script.
+    window.addEventListener("load", function () {
+      const getBlobURL = (code, type) => {
+        const blob = new Blob([code], { type });
+        return URL.createObjectURL(blob);
+      };
 
-  body !{chart}
+      const sendData = () => {
+        const XHR = new XMLHttpRequest();
+        const FD = new FormData(form);
+        XHR.responseType = 'json';
+        XHR.onload = () => {
+          var jsonResponse = XHR.response;
+          console.log(jsonResponse);
+          const vizUrl = getBlobURL(jsonResponse['chart'], 'text/html');
+          console.log(vizUrl);
+          const iframe = document.querySelector('#vizPreview');
+          iframe.src = vizUrl;
+        };
+        XHR.open("POST", "/" );
+        XHR.send(FD);
+      };
+      const form = document.getElementById("myForm");
+      const editor = document.getElementById("quickvizmd");
+
+      editor.addEventListener("blur", (event) => {
+        event.preventDefault();
+        sendData();
+      });
+
+      const vizUrl = getBlobURL(`!{chart}`, 'text/html');
+      const iframe = document.querySelector('#vizPreview');
+      iframe.src = vizUrl;
+    });
+  
