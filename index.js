@@ -11,15 +11,20 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(upload.array()); 
 
 app.get('/', function(req, res){
-    var chart = `- Dogs: 39
+    var quickvizmd = `### Quick visualizations in Markdown!
+    
+- Dogs: 39
 - Cats: 7
 - Lions: 36
 - Tigers: 55
 - Bears: 33
-- Walruses: 30`
-    const stdout = execSync(`echo "${chart}" | pandoc -t chartss.lua -f markdown`);
+- Walruses: 30
+
+Made with ♥ in California by [Jesal Gadhia](https://jes.al). Powered by [ChartSS.css](https://rbitr.github.io/ChartS.css/).
+`
+    const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
     console.log(String(stdout));
-    res.render('index', { chart: String(stdout) })
+    res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
 });
 
 app.get('/about', function(req, res){
