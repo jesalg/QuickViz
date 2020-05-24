@@ -11,14 +11,48 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(upload.array()); 
 
 app.get('/', function(req, res){
-    var quickvizmd = `### Quick visualizations in Markdown!
-    
+    var quickvizmd = `# Quick visualizations in Markdown!
+## Bar Charts    
 - Dogs: 39
 - Cats: 7
 - Lions: 36
 - Tigers: 55
 - Bears: 33
 - Walruses: 30
+
+## Scatter Plots
+
+- (15,12)
+- (0.25,6.78)
+- (-.7,9)
+- (-4,-6)
+
+## Line Plot
+
+* 1.5 : 3.3
+* 3 : -1.2
+* 4.5 : 0
+* 6 : 0
+* 7.5 : 1.5
+* 9 : 4
+* 10.5 : 8
+
+## Stacked Bar
+
+* Dogs : 20+
+* Cats : 10+
+* Lions : 30+
+* Tigers : 15+
+* Bears : 20+
+
+## Waterfall Chart
+
+- Animals: 95=
+- Dogs: 20+
+- Cats: 10+
+- Lions: 30+
+- Tigers: 15+
+- Bears: 20+
 `
     const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
     console.log(String(stdout));
