@@ -1,0 +1,26 @@
+{
+  "name": "quickviz",
+  "version": "1.0.0",
+  "description": "https://rbitr.github.io/ChartS.css/ https://cmichel.io/how-to-write-pandoc-plugins-in-nodejs/",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesalg/QuickViz.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesalg/QuickViz/issues"
+  },
+  "homepage": "https://github.com/jesalg/QuickViz#readme"
+}
