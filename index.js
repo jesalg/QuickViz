@@ -19,8 +19,6 @@ app.get('/', function(req, res){
 - Tigers: 55
 - Bears: 33
 - Walruses: 30
-
-Made with ♥ in California by [Jesal Gadhia](https://jes.al). Powered by [ChartSS.css](https://rbitr.github.io/ChartS.css/).
 `
     const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
     console.log(String(stdout));

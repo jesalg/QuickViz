@@ -22,10 +22,19 @@ html
     .bg-white.h-screen.container.mx-auto.flex.flex-wrap
       .flex.w-full(class='md:w-1/2 md:justify-start')
         form.w-full(id="myForm")
-          textarea.w-full.h-full.pt-24.pl-4.bg-gray-200.shadow-inner(id="quickvizmd" name="quickvizmd") !{quickvizmd}
+          textarea.w-full.h-full.pt-16.pl-4.bg-gray-200.shadow-inner(id="quickvizmd" name="quickvizmd") !{quickvizmd}
       .flex.w-full(class='md:w-1/2 md:justify-start')
-        .container.mx-auto.pt-24.px-6(class='md:pt-16') 
+        .container.mx-auto.px-6
           iframe(id="vizPreview", frameborder="0", width="100%", height="100%")
+    .bg-gray-800.text-gray-600
+      .container.mx-auto
+        p.py-4
+          | Made with &hearts; in California by 
+          a(href='https://jes.al' title='') Jesal Gadhia
+          | . Powered by 
+          a(href='https://rbitr.github.io/ChartS.css/' title='') ChartSS.css
+          | .
+
   script.
     window.addEventListener("load", function () {
       const getBlobURL = (code, type) => {
@@ -39,9 +48,7 @@ html
         XHR.responseType = 'json';
         XHR.onload = () => {
           var jsonResponse = XHR.response;
-          console.log(jsonResponse);
           const vizUrl = getBlobURL(jsonResponse['chart'], 'text/html');
-          console.log(vizUrl);
           const iframe = document.querySelector('#vizPreview');
           iframe.src = vizUrl;
         };
