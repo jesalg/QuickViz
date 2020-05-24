@@ -12,7 +12,7 @@ html
       | padding-top: 10px;
       | border-color:#ccc;
       | }
-  body.bg-gray-400.font-sans
+  body.bg-gray-400.font-sans.flex.flex-col.min-h-screen
     nav.bg-gray-800.mt-0.w-full
       .container.mx-auto.flex.flex-wrap.items-center
         .flex.w-full.justify-center.text-white.font-extrabold(class='md:w-1/2 md:justify-start')
@@ -28,19 +28,19 @@ html
               a.inline-block.text-gray-600.no-underline.py-2.px-4(class='hover:text-gray-200 hover:text-underline' href='/about') Syntax
             li.mr-3  
     // Container
-    .bg-white.h-screen.mx-auto.flex.flex-wrap
+    .bg-white.mx-auto.flex.flex-wrap.flex-grow.w-full
       .flex.w-full.shadow-inner.bg-gray-200(style='width: 30%', class='md:justify-start')
         form.w-full(id="myForm")
           textarea.shadow-inner.w-full.h-full.pt-2.pl-8.bg-gray-200(id="quickvizmd" name="quickvizmd") !{quickvizmd}
       .flex.w-full(style='width: 50%', class='md:justify-start')
         .container.mx-auto.px-6
           iframe(id="vizPreview", frameborder="0", width="100%", height="100%")
-      .w-full.bg-gray-200.pt-8.pl-2(style='width: 20%', class='md:justify-start')
+      .w-full.bg-gray-200.pt-8.pl-2.text-center(style='width: 20%', class='md:justify-start')
         p.mb-4.text-gray-800
           i.em.em-bulb
           span Click on the chart to refresh
         
-        textarea.block.w-full.mb-2.text-white.bg-gray-800(id='vizEmbed',rows='20')
+        textarea.block.w-full.mb-8.text-white.bg-gray-800(id='vizEmbed',rows='10')
         
         button.bg-gray-300.text-gray-800.font-bold.mr-2.py-2.px-4.rounded.inline-flex.items-center(class='hover:bg-gray-400')
           svg.fill-current.w-4.h-4.mr-2(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20')
