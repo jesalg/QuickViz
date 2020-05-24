@@ -89,7 +89,7 @@ function Doc(body, metadata, variables)
   -- a default good style
   add('<link rel="stylesheet" href="https://unpkg.com/mvp.css" />')
   add('</head>')
-  add('<body style="margin:3%">')
+  add('<body style="margin:0 3%">')
   add(body)
   if #notes > 0 then
     add('<ol class="footnotes">')

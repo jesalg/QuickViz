@@ -3,6 +3,15 @@ html
     title QuickViz
     link(rel='stylesheet' href='https://unpkg.com/tailwindcss/dist/tailwind.min.css')
     link(rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css')
+    style
+      | textarea#quickvizmd {
+      | background: url(http://i.imgur.com/2cOaJ.png);
+      | background-attachment: local;
+      | background-repeat: no-repeat;
+      | padding-left: 35px;
+      | padding-top: 10px;
+      | border-color:#ccc;
+      | }
   body.bg-gray-400.font-sans
     nav.bg-gray-800.mt-0.w-full
       .container.mx-auto.flex.flex-wrap.items-center
@@ -16,16 +25,31 @@ html
             li.mr-3
               a.inline-block.py-2.px-4.text-white.no-underline(href='/') Home
             li.mr-3
-              a.inline-block.text-gray-600.no-underline.py-2.px-4(class='hover:text-gray-200 hover:text-underline' href='/about') About
+              a.inline-block.text-gray-600.no-underline.py-2.px-4(class='hover:text-gray-200 hover:text-underline' href='/about') Syntax
             li.mr-3  
     // Container
-    .bg-white.h-screen.container.mx-auto.flex.flex-wrap
-      .flex.w-full(class='md:w-1/2 md:justify-start')
+    .bg-white.h-screen.mx-auto.flex.flex-wrap
+      .flex.w-full.shadow-inner.bg-gray-200(style='width: 30%', class='md:justify-start')
         form.w-full(id="myForm")
-          textarea.w-full.h-full.pt-16.pl-4.bg-gray-200.shadow-inner(id="quickvizmd" name="quickvizmd") !{quickvizmd}
-      .flex.w-full(class='md:w-1/2 md:justify-start')
+          textarea.shadow-inner.w-full.h-full.pt-2.pl-8.bg-gray-200(id="quickvizmd" name="quickvizmd") !{quickvizmd}
+      .flex.w-full(style='width: 50%', class='md:justify-start')
         .container.mx-auto.px-6
           iframe(id="vizPreview", frameborder="0", width="100%", height="100%")
+      .w-full.bg-gray-200.pt-8.pl-2(style='width: 20%', class='md:justify-start')
+        p.mb-4.text-gray-800
+          i.em.em-bulb
+          span Click on the chart to refresh
+        
+        textarea.block.w-full.mb-2.text-white.bg-gray-800(id='vizEmbed',rows='20')
+        
+        button.bg-gray-300.text-gray-800.font-bold.mr-2.py-2.px-4.rounded.inline-flex.items-center(class='hover:bg-gray-400')
+          svg.fill-current.w-4.h-4.mr-2(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20')
+            path(d='M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z')
+          span Image  
+        button.bg-gray-300.text-gray-800.font-bold.py-2.px-4.rounded.inline-flex.items-center(class='hover:bg-gray-400')
+          svg.fill-current.w-4.h-4.mr-2(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 20 20')
+            path#Combined-Shape(d='M0,8.00585866 C0,6.89805351 0.897060126,6 2.00585866,6 L11.9941413,6 C13.1019465,6 14,6.89706013 14,8.00585866 L14,17.9941413 C14,19.1019465 13.1029399,20 11.9941413,20 L2.00585866,20 C0.898053512,20 0,19.1029399 0,17.9941413 L0,8.00585866 L0,8.00585866 Z M6,8 L2,8 L2,18 L12,18 L12,14 L15,14 L15,12 L18,12 L18,2 L8,2 L8,5 L6,5 L6,8 L12,8 L12,14 L17.9941413,14 C19.1029399,14 20,13.1019465 20,11.9941413 L20,2.00585866 C20,0.897060126 19.1019465,0 17.9941413,0 L8.00585866,0 C6.89706013,0 6,0.898053512 6,2.00585866 L6,8 Z')
+          span HTML    
     .bg-gray-800.text-gray-600
       .container.mx-auto
         p.py-4
@@ -50,7 +74,9 @@ html
           var jsonResponse = XHR.response;
           const vizUrl = getBlobURL(jsonResponse['chart'], 'text/html');
           const iframe = document.querySelector('#vizPreview');
+          const embed = document.querySelector('#vizEmbed');
           iframe.src = vizUrl;
+          embed.value = jsonResponse['chart'];
         };
         XHR.open("POST", "/" );
         XHR.send(FD);
@@ -65,6 +91,9 @@ html
 
       const vizUrl = getBlobURL(`!{chart}`, 'text/html');
       const iframe = document.querySelector('#vizPreview');
+      const embed = document.querySelector('#vizEmbed');
+      
       iframe.src = vizUrl;
+      embed.value = `!{chart}`;
     });
   
