@@ -77,18 +77,10 @@ app.get('/', function(req, res){
 - Bears: 20+
     `
     const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
-    console.log(String(stdout));
     res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
 });
 
-app.get('/about', function(req, res){
-    res.render('about')
-});
-
 app.post('/', function(req, res){
-    console.log('--------')
-    console.log(req.body)
-    console.log(req.body.quickvizmd)
     var quickvizmd = req.body.quickvizmd;
     const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
     res.json({ chart: String(stdout) });
