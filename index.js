@@ -4,11 +4,33 @@ const multer = require('multer');
 const { execSync } = require("child_process");
 const upload = multer();
 
+var NODE_ENV = process.env.NODE_ENV || 'development';
 var app = express();
+var config = require('./webpack.config');
+var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var webpackAssets = require('express-webpack-assets');
+
+
 app.set('view engine', 'pug')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(upload.array()); 
+
+if (NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'dist')));
+} else {
+    const compiler = webpack(config)
+    app.use(webpackDevMiddleware(compiler, {
+        publicPath: config.output.publicPath,
+        stats: { colors: true }
+    }))
+    app.use(webpackHotMiddleware(compiler))
+}
+app.use(webpackAssets('./config/webpack-assets.json', {
+    devMode: NODE_ENV !== 'production'
+}));
 
 app.get('/', function(req, res){
     var quickvizmd = `# Quick visualizations in Markdown!
@@ -53,7 +75,7 @@ app.get('/', function(req, res){
 - Lions: 30+
 - Tigers: 15+
 - Bears: 20+
-`
+    `
     const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
     console.log(String(stdout));
     res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })

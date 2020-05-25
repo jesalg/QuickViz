@@ -96,6 +96,7 @@ html
           a(href='https://rbitr.github.io/ChartS.css/' title='') ChartSS.css
           | .
 
+  script(src=webpack_asset('app', 'js'))
   script.
     window.addEventListener("load", function () {
       const getBlobURL = (code, type) => {
@@ -111,9 +112,9 @@ html
           var jsonResponse = XHR.response;
           const vizUrl = getBlobURL(jsonResponse['chart'], 'text/html');
           const iframe = document.querySelector('#vizPreview');
-          const embed = document.querySelector('#vizEmbed');
+          //const embed = document.querySelector('#vizEmbed');
           iframe.src = vizUrl;
-          embed.value = jsonResponse['chart'];
+          //embed.value = jsonResponse['chart'];
         };
         XHR.open("POST", "/" );
         XHR.send(FD);
@@ -128,9 +129,8 @@ html
 
       const vizUrl = getBlobURL(`!{chart}`, 'text/html');
       const iframe = document.querySelector('#vizPreview');
-      const embed = document.querySelector('#vizEmbed');
+      //const embed = document.querySelector('#vizEmbed');
       
       iframe.src = vizUrl;
-      embed.value = `!{chart}`;
     });
   
