@@ -13,8 +13,9 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var webpackAssets = require('express-webpack-assets');
 
-
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug')
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(upload.array()); 
