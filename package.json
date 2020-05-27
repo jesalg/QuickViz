@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "https://rbitr.github.io/ChartS.css/ https://cmichel.io/how-to-write-pandoc-plugins-in-nodejs/",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "NODE_ENV=production webpack --config ./webpack.config.js --progress"
+  },
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
@@ -27,9 +31,6 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jesalg/QuickViz.git"
