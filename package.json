@@ -1,7 +1,7 @@
 {
   "name": "quickviz",
   "version": "1.0.0",
-  "description": "https://rbitr.github.io/ChartS.css/ https://cmichel.io/how-to-write-pandoc-plugins-in-nodejs/",
+  "description": "QuickViz",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
