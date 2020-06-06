@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white mx-auto flex flex-wrap flex-grow w-full">
     <div class="flex w-full shadow-inner bg-gray-200 md:justify-start" style="width: 30%">
-      <form class="w-full" id="myForm"><textarea v-model="quickvizmd" @input="getViz" class="shadow-inner w-full h-full pt-2 pl-8 bg-gray-200" id="quickvizmd" name="quickvizmd"></textarea></form>
+      <form class="w-full" id="myForm"><vue-simplemde ref="quickvizmd" v-model="quickvizmd" v-bind:configs=editorConfig @input="getViz" class="shadow-inner w-full h-full bg-gray-200" id="quickvizmd" name="quickvizmd"></vue-simplemde></form>
     </div>
     <div class="flex w-full md:justify-start" style="width: 50%">
       <div class="container mx-auto px-6"><iframe ref="vizPreview" id="vizPreview" frameborder="0" width="100%" height="100%"></iframe></div>
@@ -12,15 +12,27 @@
     </div>
   </div>
 </template>
-
+<style>
+.CodeMirror {
+	height: 75vh !important;
+}
+</style>
 <script>
 import fitty from 'fitty';
 import html2canvas from 'html2canvas';
+import VueSimplemde from 'vue-simplemde';
+import 'simplemde/dist/simplemde.min.css'
 export default {
+  components: {
+    VueSimplemde
+  },
   data () {
     return {
       quickvizmd: '',
-      chart: ''
+      chart: '',
+      editorConfig: {
+        hideIcons: ["preview", "side-by-side", "fullscreen", "guide"],
+      }
     }
   },
   methods: {
@@ -29,7 +41,7 @@ export default {
       return URL.createObjectURL(blob);
     },
     getViz(e) {
-      this.$http.post('/', {quickvizmd: e.target.value}).then(response => {
+      this.$http.post('/', {quickvizmd: e}).then(response => {
         const vizUrl = this.getBlobURL(response.body.chart, 'text/html');
         this.$refs.vizPreview.src = vizUrl;
       }, () => {

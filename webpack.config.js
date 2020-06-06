@@ -26,7 +26,6 @@ var config = {
     rules: [
       {
         test: /\.vue$/,
-        exclude: /node_modules/,
         use: [
           { loader: 'vue-loader' }
         ]
@@ -42,6 +41,10 @@ var config = {
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [ExtractTextPlugin.loader, 'css-loader']
       },
     ]
   },
