@@ -1,6 +1,0 @@
-- Dogs: 39
-- Cats: 7
-- Lions: 36
-- Tigers: 55
-- Bears: 33
-- Walruses: 30
