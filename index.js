@@ -36,6 +36,7 @@ app.use(webpackAssets('./config/webpack-assets.json', {
 
 app.get('/', function(req, res){
     var quickvizmd = `# Quick visualizations in Markdown!
+
 ## Bar Charts    
 - Dogs: 39
 - Cats: 7
@@ -44,15 +45,17 @@ app.get('/', function(req, res){
 - Bears: 33
 - Walruses: 30
 
-## Scatter Plots
+---
 
+## Scatter Plots
 - (15,12)
 - (0.25,6.78)
 - (-.7,9)
 - (-4,-6)
 
-## Line Plot
+---
 
+## Line Plot
 * 1.5 : 3.3
 * 3 : -1.2
 * 4.5 : 0
@@ -61,16 +64,18 @@ app.get('/', function(req, res){
 * 9 : 4
 * 10.5 : 8
 
-## Stacked Bar
+---
 
+## Stacked Bar
 * Dogs : 20+
 * Cats : 10+
 * Lions : 30+
 * Tigers : 15+
 * Bears : 20+
 
-## Waterfall Chart
+---
 
+## Waterfall Chart
 - Animals: 95=
 - Dogs: 20+
 - Cats: 10+

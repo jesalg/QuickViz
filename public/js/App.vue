@@ -18,6 +18,9 @@
 .CodeMirror {
 	height: 75vh !important;
 }
+.cm-header-1, .cm-header-2, .cm-header-3 {
+  font-size: inherit !important;
+}
 </style>
 <script>
 import fitty from 'fitty';
