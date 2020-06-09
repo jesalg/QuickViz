@@ -26,8 +26,11 @@
 import fitty from 'fitty';
 import html2canvas from 'html2canvas';
 import copy from 'copy-to-clipboard';
+import Noty from 'noty';
 import VueSimplemde from 'vue-simplemde';
-import 'simplemde/dist/simplemde.min.css'
+import 'simplemde/dist/simplemde.min.css';
+import 'noty/lib/noty.css';
+import 'noty/lib/themes/nest.css';
 export default {
   components: {
     VueSimplemde
@@ -61,6 +64,7 @@ export default {
         debug: true,
         asHtml: true,
       });
+      new Noty({text: `You just copied accessible & semantic viz HTML ready to be used anywhere <i class="em em-tada"/>`, layout: 'topRight', timeout:3000, theme: 'nest'}).show();
     },
     downloadImg() {
       var element = this.$refs.vizPreview.contentWindow.document.body;
