@@ -7,7 +7,7 @@
       <div class="container mx-auto"><iframe ref="vizPreview" id="vizPreview" frameborder="0" width="100%" height="100%"></iframe></div>
     </div>
     <div class="shadow-inner bg-gray-200 pt-8 pl-2 text-center md:justify-start" style="width: 20%">
-      <img src="/image/cta.svg"/>
+      <img src="/image/cta.svg" class="p-8"/>
       <p class="py-8 px-2"><i style="margin-bottom:4px" class="em-svg em-point_left"/>&nbsp;Embed this viz anywhere you like by copying the HTML or downloading the image</p>
       <button @click="downloadImg" class="bg-gray-300 text-gray-800 font-bold mr-2 py-2 px-4 rounded inline-flex items-center hover:bg-gray-400"><svg class="fill-current w-4 h-4 mr-2" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"></path></svg><span>Image  </span></button>
       <button @click="copyHTML" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center hover:bg-gray-400"><svg class="fill-current w-4 h-4 mr-2" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20"><path id="Combined-Shape" d="M0,8.00585866 C0,6.89805351 0.897060126,6 2.00585866,6 L11.9941413,6 C13.1019465,6 14,6.89706013 14,8.00585866 L14,17.9941413 C14,19.1019465 13.1029399,20 11.9941413,20 L2.00585866,20 C0.898053512,20 0,19.1029399 0,17.9941413 L0,8.00585866 L0,8.00585866 Z M6,8 L2,8 L2,18 L12,18 L12,14 L15,14 L15,12 L18,12 L18,2 L8,2 L8,5 L6,5 L6,8 L12,8 L12,14 L17.9941413,14 C19.1029399,14 20,13.1019465 20,11.9941413 L20,2.00585866 C20,0.897060126 19.1019465,0 17.9941413,0 L8.00585866,0 C6.89706013,0 6,0.898053512 6,2.00585866 L6,8 Z"></path></svg><span>HTML </span></button>
@@ -16,7 +16,7 @@
 </template>
 <style>
 .CodeMirror {
-	height: 80vh !important;
+	height: 78vh !important;
 }
 .cm-header-1, .cm-header-2, .cm-header-3 {
   font-size: inherit !important;
