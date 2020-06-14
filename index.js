@@ -83,13 +83,14 @@ app.get('/', function(req, res){
 - Tigers: 15+
 - Bears: 20+
     `
-    const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
+    const stdout = execSync(`echo "${quickvizmd}" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
     res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
 });
 
 app.post('/', function(req, res){
     var quickvizmd = req.body.quickvizmd;
-    const stdout = execSync(`echo "${quickvizmd}" | pandoc -t chartss.lua -f markdown`);
+    const dangerBase64 = Buffer.from(quickvizmd).toString('base64');
+    const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 -D)" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
     res.json({ chart: String(stdout) });
 });
 
