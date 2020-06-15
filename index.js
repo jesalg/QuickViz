@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const { execSync } = require("child_process");
@@ -35,56 +36,16 @@ app.use(webpackAssets('./config/webpack-assets.json', {
 }));
 
 app.get('/', function(req, res){
-    var quickvizmd = `# Quick visualizations in Markdown!
-
-## Bar Charts    
-- Dogs: 39
-- Cats: 7
-- Lions: 36
-- Tigers: 55
-- Bears: 33
-- Walruses: 30
-
----
-
-## Scatter Plots
-- (15,12)
-- (0.25,6.78)
-- (-.7,9)
-- (-4,-6)
-
----
-
-## Line Plot
-* 1.5 : 3.3
-* 3 : -1.2
-* 4.5 : 0
-* 6 : 0
-* 7.5 : 1.5
-* 9 : 4
-* 10.5 : 8
-
----
-
-## Stacked Bar
-* Dogs : 20+
-* Cats : 10+
-* Lions : 30+
-* Tigers : 15+
-* Bears : 20+
-
----
-
-## Waterfall Chart
-- Animals: 95=
-- Dogs: 20+
-- Cats: 10+
-- Lions: 30+
-- Tigers: 15+
-- Bears: 20+
-    `
-    const stdout = execSync(`echo "${quickvizmd}" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
-    res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
+    fs.readFile('public/input.md', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        var quickvizmd = data;
+        const dangerBase64 = Buffer.from(quickvizmd).toString('base64');
+        const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 --decode)" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
+        res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
+    });
+    
 });
 
 app.post('/', function(req, res){
