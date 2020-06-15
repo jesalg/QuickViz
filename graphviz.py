@@ -18,9 +18,10 @@ def graphviz(key, value, format, _):
     if key == 'CodeBlock':
         [[ident, classes, keyvals], code] = value
         if "graph" in classes:
+            prog, keyvals = get_value(keyvals, u"prog", u"dot")
             g = pygraphviz.AGraph(string=code)
             g.layout()
-            return RawBlock('html', g.draw(None, 'svg', prog='dot'))
+            return RawBlock('html', g.draw(None, 'svg', prog=prog))
 
 if __name__ == "__main__":
 
