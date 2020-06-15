@@ -1,4 +1,5 @@
-[] Better FavIco
-[] Coming soon / share page UX
-[] Google Analytics
-[] Email capture?
+- [ ] Fix fileread bug
+- [ ] Better FavIco
+- [ ] Coming soon / share page UX
+- [ ] Google Analytics
+- [ ] Email capture?
