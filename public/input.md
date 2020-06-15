@@ -63,7 +63,7 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 
 ### Flow Diagram
 
-```{.graph .center}
+```{.graph .center prog=neato}
 
 digraph G {
 
