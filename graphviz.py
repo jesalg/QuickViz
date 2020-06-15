@@ -20,7 +20,7 @@ def graphviz(key, value, format, _):
         if "graph" in classes:
             g = pygraphviz.AGraph(string=code)
             g.layout()
-            return RawBlock('html', g.draw(None, 'svg'))
+            return RawBlock('html', g.draw(None, 'svg', prog='dot'))
 
 if __name__ == "__main__":
 
