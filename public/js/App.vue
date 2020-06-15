@@ -29,6 +29,7 @@ import html2canvas from 'html2canvas';
 import copy from 'copy-to-clipboard';
 import Noty from 'noty';
 import VueSimplemde from 'vue-simplemde';
+import _ from 'lodash';
 import 'simplemde/dist/simplemde.min.css';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/nest.css';
@@ -51,6 +52,7 @@ export default {
       return URL.createObjectURL(blob);
     },
     getViz(e) {
+      console.log(this)
       this.$http.post('/', {quickvizmd: e}).then(response => {
         const vizUrl = this.getBlobURL(response.body.chart, 'text/html');
         this.$refs.vizPreview.src = vizUrl;
@@ -81,6 +83,7 @@ export default {
   created() {
     this.quickvizmd = this.$parent.quickvizmd;
     this.chart = this.$parent.chart;
+    this.getViz = _.debounce(this.getViz, 500);
   },
   mounted() {
     const vizUrl = this.getBlobURL(this.chart, 'text/html');
