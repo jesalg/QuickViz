@@ -59,9 +59,11 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 
 --- 
 
-## Graph Viz
+## Directed acyclic graphs (DAGs)
 
-```{.graph .center caption="This was generated using the graphviz.py filter."}
+### Flow Diagram
+
+```{.graph .center}
 
 digraph G {
 
@@ -93,5 +95,45 @@ digraph G {
 
   start [label="load" shape=folder];
   end [label="store" shape=box3d];
+}
+```
+
+------------------------------------------------
+
+### Fully-connected mesh network topology
+
+```{.graph .center prog=neato}
+graph ER {
+
+bgcolor="#ffffff00";
+node [shape=circle, width=0.5, fixedsize=true];
+edge [len=2]
+
+A [style=filled,color="#FB08FF22"];
+B [style=filled,color="#74FF2122"];
+C [style=filled,color="#21FFFE22"];
+D [style=filled,color="#FF732122"];
+E [style=filled,color="#3600FF22"];
+F [style=filled,color="#FFE81922"];
+
+A -- B 
+A -- C 
+A -- D 
+A -- E 
+A -- F 
+
+B -- C 
+B -- D 
+B -- E 
+B -- F 
+
+C -- D 
+C -- E 
+C -- F 
+
+D -- E 
+D -- F 
+
+E -- F 
 }
 ```
