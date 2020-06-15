@@ -1,2 +1,4 @@
-https://rbitr.github.io/ChartS.css/
-https://cmichel.io/how-to-write-pandoc-plugins-in-nodejs/
+[] Better FavIco
+[] Coming soon / share page UX
+[] Google Analytics
+[] Email capture?
