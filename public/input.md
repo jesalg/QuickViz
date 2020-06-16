@@ -63,3 +63,77 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 
 ### Flow Diagram
 
+```{.graph .center prog=neato}
+
+digraph G {
+
+  bgcolor="#ffffff00"
+
+  subgraph cluster_0 {
+    style="filled, rounded";
+    color="#E6EAF2"
+    node [style=filled,color=white];
+    a0 -> a1 -> a2 -> a3;
+    a3 -> a1 [label = " -10" color=red fontcolor=red];
+    label = "System A";
+  }
+
+  subgraph cluster_1 {
+    node [style=filled color="#E6EAF2"];
+    b0 -> b1 -> b2 -> b3;
+    b0 -> b2 [label = " +12" color=green fontcolor=green];
+    label = "System B";
+    style="dashed, rounded"
+    color=blue
+  }
+
+  start -> a0;
+  start -> b0;
+  a1 -> b3;
+  a3 -> end;
+  b3 -> end;
+
+  start [label="load" shape=folder];
+  end [label="store" shape=box3d];
+}
+```
+
+------------------------------------------------
+
+### Fully-connected mesh network topology
+
+```{.graph .center prog=neato}
+graph ER {
+
+bgcolor="#ffffff00";
+node [shape=circle, width=0.5, fixedsize=true];
+edge [len=2]
+
+A [style=filled,color="#FB08FF22"];
+B [style=filled,color="#74FF2122"];
+C [style=filled,color="#21FFFE22"];
+D [style=filled,color="#FF732122"];
+E [style=filled,color="#3600FF22"];
+F [style=filled,color="#FFE81922"];
+
+A -- B 
+A -- C 
+A -- D 
+A -- E 
+A -- F 
+
+B -- C 
+B -- D 
+B -- E 
+B -- F 
+
+C -- D 
+C -- E 
+C -- F 
+
+D -- E 
+D -- F 
+
+E -- F 
+}
+```
