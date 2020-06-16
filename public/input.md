@@ -63,37 +63,3 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 
 ### Flow Diagram
 
-```{.graph .center prog=neato}
-
-digraph G {
-
-  bgcolor="#ffffff00"
-
-  subgraph cluster_0 {
-    style="filled, rounded";
-    color="#E6EAF2"
-    node [style=filled,color=white];
-    a0 -> a1 -> a2 -> a3;
-    a3 -> a1 [label = " -10" color=red fontcolor=red];
-    label = "System A";
-  }
-
-  subgraph cluster_1 {
-    node [style=filled color="#E6EAF2"];
-    b0 -> b1 -> b2 -> b3;
-    b0 -> b2 [label = " +12" color=green fontcolor=green];
-    label = "System B";
-    style="dashed, rounded"
-    color=blue
-  }
-
-  start -> a0;
-  start -> b0;
-  a1 -> b3;
-  a3 -> end;
-  b3 -> end;
-
-  start [label="load" shape=folder];
-  end [label="store" shape=box3d];
-}
-```
