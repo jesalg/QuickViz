@@ -25,5 +25,5 @@ def graphviz(key, value, format, _):
             return RawBlock('html', g.draw(None, 'svg', prog=prog))
 
 if __name__ == "__main__":
-
+    sys.stderr.write(sys.version)
     toJSONFilter(graphviz)
