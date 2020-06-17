@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
 Pandoc filter to process code blocks with class "graph" into
@@ -19,7 +20,7 @@ def graphviz(key, value, format, _):
         [[ident, classes, keyvals], code] = value
         if "graph" in classes:
             prog, keyvals = get_value(keyvals, 'prog', 'dot')
-            g = pygraphviz.AGraph(string=code)
+            g = pygraphviz.AGraph(string=code.strip().decode())
             g.layout()
             return RawBlock('html', g.draw(None, 'svg', prog=prog))
 
