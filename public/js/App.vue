@@ -39,6 +39,7 @@ export default {
   },
   data () {
     return {
+      updateCounter: 0,
       quickvizmd: '',
       chart: '',
       editorConfig: {
@@ -52,12 +53,15 @@ export default {
       return URL.createObjectURL(blob);
     },
     getViz(e) {
-      console.log(this)
+      if (this.updateCounter == 0) {
+        this.updateCounter++;
+        return;
+      }
       this.$http.post('/', {quickvizmd: e}).then(response => {
         const vizUrl = this.getBlobURL(response.body.chart, 'text/html');
         this.$refs.vizPreview.src = vizUrl;
       }, () => {
-        //TODO: SHOW ERROR
+        new Noty({type: 'error', text: `Whoops, that was unexpected, try again...`, layout: 'topRight', timeout:3000, theme: 'nest'}).show();
       });
     },
     copyHTML() {

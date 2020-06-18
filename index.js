@@ -7,6 +7,7 @@ const { execSync } = require("child_process");
 const upload = multer();
 
 var NODE_ENV = process.env.NODE_ENV || 'development';
+var pipEnv = NODE_ENV !== 'production' ? 'pipenv run ' : '';
 var app = express();
 var config = require('./webpack.config');
 var webpack = require('webpack');
@@ -42,7 +43,7 @@ app.get('/', function(req, res){
         }
         var quickvizmd = data;
         const dangerBase64 = Buffer.from(quickvizmd).toString('base64');
-        const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 --decode)" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
+        const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 --decode)" | ${pipEnv}pandoc -f markdown --filter graphviz.py -t chartss.lua`);
         res.render('index', {quickvizmd: quickvizmd, chart: String(stdout) })
     });
     
@@ -51,7 +52,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
     var quickvizmd = req.body.quickvizmd;
     const dangerBase64 = Buffer.from(quickvizmd).toString('base64');
-    const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 --decode)" | pandoc -f markdown --filter graphviz.py -t chartss.lua`);
+    const stdout = execSync(`echo "$(echo ${dangerBase64} | base64 --decode)" | ${pipEnv}pandoc -f markdown --filter graphviz.py -t chartss.lua`);
     res.json({ chart: String(stdout) });
 });
 
