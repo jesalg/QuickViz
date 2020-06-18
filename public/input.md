@@ -51,6 +51,9 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 --- 
 
 ## Math
+
+Write TeX and LaTeX equations using [MathJax](https://www.mathjax.org/)
+
 | Label        |  Description                                                        |
 | :----------: | :-----------------------------------------------------------------: |
 | `meanflx`    | $${\langle F\rangle=\frac{1}{N_f}\sum_i F_i}$$                      |
@@ -61,9 +64,11 @@ Generate accessible & semantic HTML document (or an image) with complex charts, 
 
 ## Directed acyclic graphs (DAGs)
 
+Create a wide varety of graph visualizations using the [DOT syntax](https://graphviz.org/doc/info/lang.html)
+
 ### Flow Diagram
 
-```{.graph .center}
+```{.graph}
 
 digraph G {
 
@@ -102,7 +107,7 @@ digraph G {
 
 ### Fully-connected mesh network topology
 
-```{.graph .center prog=neato}
+```{.graph prog=neato}
 graph ER {
 
 bgcolor="#ffffff00";
