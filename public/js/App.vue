@@ -36,6 +36,12 @@ import _ from 'lodash';
 import 'simplemde/dist/simplemde.min.css';
 import 'noty/lib/noty.css';
 import 'noty/lib/themes/nest.css';
+import VueSocketIO from 'vue-socket.io';
+import SocketIO from "socket.io-client"
+import Vue from 'vue';
+
+Vue.use(new VueSocketIO({debug: true, connection: SocketIO()}));
+
 export default {
   components: {
     VueSimplemde
@@ -50,6 +56,12 @@ export default {
       }
     }
   },
+  sockets: {
+    quickvizhtml(data) {
+      const vizUrl = this.getBlobURL(data.chart, 'text/html');
+      this.$refs.vizPreview.src = vizUrl;
+    }
+  },
   methods: {
     getBlobURL(code, type) {
       const blob = new Blob([code], { type });
@@ -60,12 +72,7 @@ export default {
         this.updateCounter++;
         return;
       }
-      this.$http.post('/', {quickvizmd: e}).then(response => {
-        const vizUrl = this.getBlobURL(response.body.chart, 'text/html');
-        this.$refs.vizPreview.src = vizUrl;
-      }, () => {
-        new Noty({type: 'error', text: `Whoops, that was unexpected, try again...`, layout: 'topRight', timeout:3000, theme: 'nest'}).show();
-      });
+      this.$socket.emit('quickvizmd', e);
     },
     copyHTML() {
       const element = this.$refs.vizPreview.contentWindow.document;
