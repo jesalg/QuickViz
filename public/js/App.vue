@@ -40,7 +40,7 @@ import VueSocketIO from 'vue-socket.io';
 import SocketIO from "socket.io-client"
 import Vue from 'vue';
 
-Vue.use(new VueSocketIO({debug: true, connection: SocketIO()}));
+Vue.use(new VueSocketIO({debug: false, connection: SocketIO()}));
 
 export default {
   components: {
