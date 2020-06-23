@@ -1,5 +1,3 @@
-- [ ] Fix fileread bug
-- [ ] Better FavIco
-- [ ] Coming soon / share page UX
-- [ ] Google Analytics
+- [ ] Sync scroll
+- [ ] Incrimental HTML update - https://stackoverflow.com/questions/35599467/algorithm-to-update-only-the-changed-innerhtml-of-the-document
 - [ ] Email capture?
