@@ -1,0 +1,8 @@
+{
+  "buildpacks": [
+    "heroku/nodejs",
+    "https://buildpack-registry.s3.amazonaws.com/buildpacks/heroku-community/apt.tgz",
+    "https://github.com/weibeld/heroku-buildpack-graphviz",
+    "heroku/python"
+  ]
+}
