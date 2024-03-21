@@ -29,5 +29,8 @@ COPY . .
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
+# Expose port 3000
+EXPOSE 3000
+
 # Use the command from Procfile to run your application
 CMD ["sh", "-c", "$(cat Procfile | cut -d ':' -f 2-)"]

@@ -1,5 +1,5 @@
 [requires]
-python_version = "3.8.18"
+python_version = "3.8"
 
 [packages]
 astroid = "==2.4.2"
