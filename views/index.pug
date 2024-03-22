@@ -41,7 +41,9 @@ html
       .w-full.mx-auto.flex.flex-wrap.items-center.justify-between.mt-0.px-2.py-2
         .pl-4.flex.items-center
           a.text-white.no-underline.font-bold.text-2xl(class='hover:no-underline', href='#')
-            QuickViz
+            svg.mr-2.h-6.w-6.inline-block.fill-current.text-orange-700(xmlns='https://www.w3.org/2000/svg' viewbox='0 0 20 20')
+              path(d='M13 8V0L8.11 5.87 3 12h4v8L17 8h-4z')
+            | QuickViz
     #app(data-quickvizmd=quickvizmd, data-chart=chart)
     .bg-gray-800.text-gray-600
       .mx-auto.pl-8
