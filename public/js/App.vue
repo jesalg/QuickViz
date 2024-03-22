@@ -7,7 +7,7 @@
       <div class="container mx-auto"><iframe ref="vizPreview" id="vizPreview" frameborder="0" width="100%" height="100%"></iframe></div>
     </div>
     <div class="shadow-inner bg-gray-200 pt-8 pl-2 text-center md:justify-start" style="width: 20%">
-      <img src="/image/cta.svg" class="p-8"/>
+      
       <p class="py-8 px-2"><i style="margin-bottom:4px" class="em-svg em-point_left"/>&nbsp;Embed this anywhere you like by copying the HTML or downloading the image</p>
       <div class="inline-flex w-full">
       <button @click="downloadImg" class="bg-gray-300 text-gray-800 font-bold mr-2 py-2 px-4 rounded inline-flex items-center shadow"><svg class="fill-current w-4 h-4 mr-2" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"></path></svg><span>Image  </span></button>
@@ -19,6 +19,23 @@
   </div>
 </template>
 <style>
+@import url("https://rsms.me/inter/inter.css");
+@import url("https://cdn.tailwindcss.com");
+@import url("https://afeld.github.io/emoji-css/emoji.css");
+
+html {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji";
+}
+.gradient {
+  background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+}
+button:hover,
+.gradient2 {
+  background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+}
 .CodeMirror {
 	height: 78vh !important;
 }
